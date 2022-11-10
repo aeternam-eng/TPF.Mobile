@@ -1,4 +1,8 @@
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:stronzotpfmobile/app/repositories/user.repository.dart';
+import 'package:tpf_mobile/app/repositories/device.repository.dart';
+import 'package:tpf_mobile/app/repositories/measurement.repository.dart';
 
-final userRepositoryProvider = Provider((ref) => UserRepository(ref.read));
+final measurementRepositoryProvider =
+    Provider((ref) => MeasurementRepository(ref.read));
+
+final deviceRepositoryProvider = Provider((ref) => DeviceRepository(ref.read));

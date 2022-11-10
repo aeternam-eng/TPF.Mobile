@@ -1,6 +1,6 @@
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:stronzotpfmobile/app/models/auth.model.dart';
-import 'package:stronzotpfmobile/app/repositories/auth.repository.dart';
+import '../models/auth_response.model.dart';
+import '../repositories/login.repository.dart';
 
 class AuthNotifier extends StateNotifier<AsyncValue<AuthResponse?>> {
   final _authRepository = AuthRepository();

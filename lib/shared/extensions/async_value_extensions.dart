@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:stronzotpfmobile/shared/helpers/snack_bar_helper.dart';
+import '../helpers/snack_bar_helper.dart';
 
 extension AsyncValueUI on AsyncValue<dynamic> {
   bool get isLoading => this is AsyncLoading<dynamic>;
