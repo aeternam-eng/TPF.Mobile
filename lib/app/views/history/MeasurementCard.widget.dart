@@ -26,6 +26,11 @@ class MeasurementCard extends StatelessWidget {
             fit: BoxFit.contain,
             height: double.infinity,
             width: double.infinity,
+            errorBuilder: (context, error, stackTrace) => const Center(
+                child: Text(
+              "Imagem não disponível",
+              textAlign: TextAlign.center,
+            )),
           ),
         ),
       );
@@ -69,8 +74,10 @@ class MeasurementCard extends StatelessWidget {
                     margin: const EdgeInsets.only(left: 15, top: 10),
                     child: Text(
                       "Data: " +
-                          DateFormat('dd/MM/yyyy HH:mm', 'pt_BR')
-                              .format(measurement.date.toLocal()),
+                          DateFormat('dd/MM/yyyy HH:mm', 'pt_BR').format(
+                              measurement.date
+                                  .add(const Duration(hours: -3))
+                                  .toLocal()),
                       style: TextStyle(fontSize: 12, color: textColor),
                     ),
                   ),

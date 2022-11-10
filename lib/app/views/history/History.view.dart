@@ -30,9 +30,17 @@ class _History extends ConsumerState<History> {
   @override
   Widget build(BuildContext context) {
     final measurementsList = ref.watch(measurementProvider);
-    final bool shouldShowFireAlert = measurementsList.value?.any(
-            (measurement) => measurement.date.day == DateTime.now().day) ??
-        false;
+
+    _verifyFireAlert() {
+      // If the date was at most an hour ago
+      var referenceDate = DateTime.now().toUtc().add(const Duration(hours: -1));
+      var list = measurementsList.value ?? List.empty();
+
+      return list.any((measurement) =>
+          (measurement.date.toUtc().compareTo(referenceDate) > 0));
+    }
+
+    final bool shouldShowFireAlert = _verifyFireAlert();
 
     ref.listen<AsyncValue<List<Measurement>?>>(measurementProvider,
         (previous, next) => next.showSnackBarOnError(context));
@@ -82,8 +90,8 @@ class _History extends ConsumerState<History> {
                     Expanded(
                       child: Text(
                         shouldShowFireAlert
-                            ? "Há indícios de incêndio. Um possível incêndio foi detectado hoje."
-                            : "Nenhum possível incêndio detectado hoje.",
+                            ? "Aviso! Um possível incêndio foi detectado dentro da última hora. Verifique abaixo:"
+                            : "Nenhum possível incêndio detectado hoje. :-)",
                         style: TextStyle(fontSize: 16, color: textColor),
                         maxLines: 5,
                         overflow: TextOverflow.ellipsis,
