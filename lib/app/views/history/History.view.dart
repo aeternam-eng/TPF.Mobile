@@ -91,7 +91,7 @@ class _History extends ConsumerState<History> {
                       child: Text(
                         shouldShowFireAlert
                             ? "Aviso! Um possível incêndio foi detectado dentro da última hora. Verifique abaixo:"
-                            : "Nenhum possível incêndio detectado hoje. :-)",
+                            : "Nenhum possível incêndio detectado na última hora. :-)",
                         style: TextStyle(fontSize: 16, color: textColor),
                         maxLines: 5,
                         overflow: TextOverflow.ellipsis,
